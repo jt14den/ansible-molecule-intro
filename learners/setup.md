@@ -2,17 +2,7 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
-
-## Data Sets
-
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+This lesson uses Ansible and Molecule to demonstrate automation and testing. Learners need a working Python environment, a way to run virtual machines or containers, and the required Ansible collections.
 
 ## Software Setup
 
@@ -20,18 +10,18 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 
 ### Details
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+We'll use Docker as the default driver for Molecule, though Vagrant can be substituted if you already use it.  
+All operating systems will need Python, pip, and Git.  
+We recommend creating a dedicated virtual environment for this lesson.  
 
 :::::::::::::::: spoiler
 
 ### Windows
 
-Use PuTTY
+1. Install [Python 3](https://www.python.org/downloads/).  
+2. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/).  
+3. Install [Git for Windows](https://git-scm.com/download/win).  
+4. Open **PowerShell** or **Git Bash** for the exercises.  
 
 ::::::::::::::::::::::::
 
@@ -39,16 +29,44 @@ Use PuTTY
 
 ### MacOS
 
-Use Terminal.app
+1. Install [Homebrew](https://brew.sh/).  
+2. Install Python, Git, and Docker with:  
+   ```bash
+   brew install python git
+   brew install --cask docker
+   ```  
+3. Open **Terminal.app** for the exercises.  
 
 ::::::::::::::::::::::::
-
 
 :::::::::::::::: spoiler
 
 ### Linux
 
-Use Terminal
+1. Use your package manager to install Python 3 and Git. For example on Ubuntu:  
+   ```bash
+   sudo apt update
+   sudo apt install -y python3 python3-pip git
+   ```  
+2. Install [Docker Engine](https://docs.docker.com/engine/install/).  
+3. Open your preferred terminal emulator for the exercises.  
 
 ::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Ansible and Molecule
+
+After Docker (or Vagrant) is set up, install the required Python packages:  
+
+```bash
+python3 -m venv ansible-env
+source ansible-env/bin/activate
+pip install ansible molecule molecule-docker
+```
+
+Install the Ansible collections used in this lesson:  
+
+```bash
+ansible-galaxy collection install community.docker ansible.posix
+```
