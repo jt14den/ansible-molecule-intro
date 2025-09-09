@@ -266,14 +266,54 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
-
-<p>This is a new lesson built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
-Workbench</a>.</p>
+<div class="section level1">
+<h1 id="getting-started-with-ansible-and-molecule">Getting Started with Ansible and Molecule<a class="anchor" aria-label="anchor" href="#getting-started-with-ansible-and-molecule"></a></h1>
+<p>This lesson introduces <strong>Ansible</strong> for infrastructure
+automation and <strong>Molecule</strong> for testing and validating
+Ansible roles.</p>
+<p>It is designed for people who have some experience with virtual
+machines or containers but are new to infrastructure-as-code. By working
+through the lesson, you will learn how to automate system configuration
+and test your work before deploying to production.</p>
+<div class="section level2">
+<h2 id="objectives">Objectives<a class="anchor" aria-label="anchor" href="#objectives"></a></h2>
+<ul><li>Explain the benefits of infrastructure-as-code for reproducibility
+and collaboration<br></li>
+<li>Run an Ansible playbook to install and configure software on a VM or
+container<br></li>
+<li>Describe the role of <strong>idempotence</strong> in configuration
+management<br></li>
+<li>Write and organize Ansible roles with variables and defaults<br></li>
+<li>Use <strong>Molecule</strong> to create, converge, and test an
+Ansible role<br></li>
+<li>Diagnose and resolve common Ansible and Molecule errors<br></li>
+<li>Apply knowledge to build a minimal reproducible infrastructure
+component (e.g., Apache or Postgres)</li>
+</ul></div>
+<div class="section level2">
+<h2 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a></h2>
+<div id="prereq1" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<span class="callout-header">Prerequisite</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul><li>Comfort using the command line (basic navigation, editing files,
+running commands)<br></li>
+<li>Some prior experience with virtual machines or containers (e.g.,
+Docker, Vagrant, or cloud VMs)<br></li>
+<li>Ansible, Python, and Docker installed (setup instructions provided
+in this lesson)<br></li>
+</ul></div>
+</div>
+</div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-
+</div>
+</div>
 
       <section id="schedule"><table class="table table schedule table-striped" role="presentation"><tbody><tr><td></td><td><a href="#setup">Setup Instructions</a></td><td> Download files required for the lesson</td>
           </tr><tr><td>
@@ -333,7 +373,7 @@ e.g. online setup) in the solutions blocks.</p>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>Use PuTTY</p>
 </div>
@@ -348,7 +388,7 @@ e.g. online setup) in the solutions blocks.</p>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>Use Terminal.app</p>
 </div>
@@ -363,7 +403,7 @@ e.g. online setup) in the solutions blocks.</p>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>Use Terminal</p>
 </div>
