@@ -339,16 +339,11 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><p>FIXME: Setup instructions live in this document. Please specify the
-tools and the data sets the Learner needs to have installed.</p>
-<section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
-<hr class="half-width"><!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
-</section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
+      </section><section id="setup"><p>This lesson uses Ansible and Molecule to demonstrate automation and
+testing. Learners need a working Python environment, a way to run
+virtual machines or containers, and the required Ansible
+collections.</p>
+<section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><div id="details" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -357,14 +352,11 @@ and unzip it to your Desktop</p>
 <div id="details" class="callout-inner">
 <h3 class="callout-title">Details</h3>
 <div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>spoiler</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
-</div>
-</div>
-</div>
+<p>We’ll use Docker as the default driver for Molecule, though Vagrant
+can be substituted if you already use it.<br>
+All operating systems will need Python, pip, and Git.<br>
+We recommend creating a dedicated virtual environment for this
+lesson.</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -375,8 +367,15 @@ e.g. online setup) in the solutions blocks.</p>
 </button>
 <div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
-<p>Use PuTTY</p>
-</div>
+<ol style="list-style-type: decimal"><li>Install <a href="https://www.python.org/downloads/" class="external-link">Python
+3</a>.<br></li>
+<li>Install <a href="https://www.docker.com/products/docker-desktop/" class="external-link">Docker
+Desktop</a>.<br></li>
+<li>Install <a href="https://git-scm.com/download/win" class="external-link">Git for
+Windows</a>.<br></li>
+<li>Open <strong>PowerShell</strong> or <strong>Git Bash</strong> for
+the exercises.</li>
+</ol></div>
 </div>
 </div>
 </div>
@@ -390,8 +389,18 @@ e.g. online setup) in the solutions blocks.</p>
 </button>
 <div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
-<p>Use Terminal.app</p>
+<ol style="list-style-type: decimal"><li><p>Install <a href="https://brew.sh/" class="external-link">Homebrew</a>.<br></p></li>
+<li>
+<p>Install Python, Git, and Docker with:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">brew</span> install python git</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> docker</span></code></pre>
 </div>
+</li>
+<li><p>Open <strong>Terminal.app</strong> for the exercises.</p></li>
+</ol></div>
 </div>
 </div>
 </div>
@@ -405,10 +414,41 @@ e.g. online setup) in the solutions blocks.</p>
 </button>
 <div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
-<p>Use Terminal</p>
+<ol style="list-style-type: decimal"><li>
+<p>Use your package manager to install Python 3 and Git. For example
+on Ubuntu:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> python3 python3-pip git</span></code></pre>
+</div>
+</li>
+<li><p>Install <a href="https://docs.docker.com/engine/install/" class="external-link">Docker
+Engine</a>.<br></p></li>
+<li><p>Open your preferred terminal emulator for the exercises.</p></li>
+</ol></div>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="ansible-and-molecule">Ansible and Molecule<a class="anchor" aria-label="anchor" href="#ansible-and-molecule"></a></h2>
+<hr class="half-width"><p>After Docker (or Vagrant) is set up, install the required Python
+packages:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv ansible-env</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">source</span> ansible-env/bin/activate</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">pip</span> install ansible molecule molecule-docker</span></code></pre>
+</div>
+<p>Install the Ansible collections used in this lesson:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">ansible-galaxy</span> collection install community.docker ansible.posix</span></code></pre>
 </div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
